@@ -1,0 +1,1 @@
+stream_{stream}_maturity_{maturity}_activity: {description}
