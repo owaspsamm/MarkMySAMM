@@ -9,7 +9,7 @@ The script is designed to convert YAML files from a specified source directory i
 Below is the general command line format to run the script:
 
 ```bash
-python3 script_name.py -i <input_directory> -o <output_directory>
+python3 markmysamm.py -i <input_directory> -o <output_directory>
 ```
 
 ### Arguments
