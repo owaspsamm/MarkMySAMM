@@ -1,0 +1,2 @@
+PyYAML==5.4.1
+unidecode==1.2.0

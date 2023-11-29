@@ -1,0 +1,17 @@
+name: 'MarkMySAMM'
+description: 'Convert OWASP SAMM Core YML files into Markdown files suitable for Hugo'
+inputs:
+  input_directory:
+    description: 'Input directory'
+    required: true
+  output_directory:
+    description: 'Output directory'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - '-i'
+    - ${{ inputs.input_directory }}
+    - '-o'
+    - ${{ inputs.output_directory }}
