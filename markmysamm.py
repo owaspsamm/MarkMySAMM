@@ -321,6 +321,7 @@ if __name__ == "__main__":
             'function_slug': function_slug,
             'practice_slug': practice_slug,
             'letter': stmvalue['letter'],
+            'letterlower': stmvalue['letter'].lower(),
             'function_name': function_name,
             'practice_name': practice_name,
             'levels': level_markdown
