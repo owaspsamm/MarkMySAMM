@@ -12,7 +12,7 @@ RUN ls -la
 
 # Install any needed packages specified in requirements.txt
 # You should create a requirements.txt file if you have external dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
 
 # Run markmysamm.py when the container launches
 #ENTRYPOINT ["python3", "markmysamm.py"]
