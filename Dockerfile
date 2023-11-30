@@ -8,10 +8,13 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 COPY markmysamm.py ./
 COPY templates/ ./templates/
+RUN ls -la
 
 # Install any needed packages specified in requirements.txt
 # You should create a requirements.txt file if you have external dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run markmysamm.py when the container launches
-ENTRYPOINT ["python3", "markmysamm.py"]
+#ENTRYPOINT ["python3", "markmysamm.py"]
+# Temporarily replace the entrypoint for debugging
+ENTRYPOINT ["sh", "-c", "echo Current directory: $(pwd) && echo Directory contents: $(ls -la) && python3 markmysamm.py"]
