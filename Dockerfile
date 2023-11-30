@@ -15,5 +15,6 @@ RUN ls -la
 RUN pip install --no-cache-dir -r /requirements.txt
 
 # Run markmysamm.py when the container launches
-ENTRYPOINT ["python3", "/markmysamm.py"]
+#ENTRYPOINT ["python3", "/markmysamm.py"]
 # Temporarily replace the entrypoint for debugging
+ENTRYPOINT ["sh", "-c", "echo Current directory: $(pwd) && echo Directory contents: $(ls -la) && echo fr contents: $(ls -la fr) && python3 markmysamm.py"]
