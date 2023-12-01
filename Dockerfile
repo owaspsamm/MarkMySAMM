@@ -7,7 +7,7 @@ WORKDIR /github/workspace
 # Copy the script and the templates directory into the container
 COPY requirements.txt /requirements.txt
 COPY markmysamm.py /markmysamm.py
-COPY templates/ /templates/
+COPY templates/ /github/workspace/templates/
 RUN ls -la
 
 # Install any needed packages specified in requirements.txt
