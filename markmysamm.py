@@ -303,6 +303,9 @@ if __name__ == "__main__":
                 for asetkey,asetvalue in nested_dict['answer_sets'].items():
                     if asetvalue['id'] == answer_set_id:
                         for ansvalue in asetvalue['values']:
+                            pp.pprint(ansvalue['text'])
+                            pp.pprint(fix_bool(ansvalue['text']))
+                            pp.pprint('- '+fix_bool(ansvalue['text'])+'\n')
                             answer_set_markdown += '- '+fix_bool(ansvalue['text'])+'\n'
 
                 # Set variables for the stream level template
