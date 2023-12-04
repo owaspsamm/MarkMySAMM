@@ -300,13 +300,13 @@ if __name__ == "__main__":
                             criteria += '- '+critvalue+'\n'
                 # Now get answer set
                 answer_set_markdown = ''
-                for asetkey,asetvalue in nested_dict['answer_sets'].items():
-                    if asetvalue['id'] == answer_set_id:
-                        for ansvalue in asetvalue['values']:
-                            pp.pprint(ansvalue['text'])
-                            pp.pprint(fix_bool(ansvalue['text']))
-                            pp.pprint('- '+fix_bool(ansvalue['text'])+'\n')
-                            answer_set_markdown += '- '+fix_bool(ansvalue['text'])+'\n'
+                try:
+                    for asetkey,asetvalue in nested_dict['answer_sets'].items():
+                        if asetvalue['id'] == answer_set_id:
+                            for ansvalue in asetvalue['values']:
+                                answer_set_markdown += '- '+fix_bool(ansvalue['text'])+'\n'
+                except Exception as err:
+                    print("Error handling answer sets: ", err)
 
                 # Set variables for the stream level template
                 variables = {
