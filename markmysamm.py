@@ -67,10 +67,10 @@ def process_template_content(input_file, variables):
     """
     Reads a Markdown template file, replaces placeholders with actual values, and returns content.
 
-    :param input_file: path to the input template file
+    :param input_file: path to the input template file. Relative to this script's location
     :param variables: a dictionary where keys are placeholder names and values are the actual values
     """
-    with open(input_file, 'r') as file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + input_file, 'r') as file:
         template = file.read()
     
     return template.format(**variables)
@@ -80,8 +80,8 @@ def process_template(input_file, output_file, variables):
     """
     Reads a Markdown template file, replaces placeholders with actual values, and writes to a new file.
 
-    :param input_file: path to the input template file
-    :param output_file: path to the output file
+    :param input_file: path to the input template file (relative to this script's location)
+    :param output_file: path to the output file (relative to working directory)
     :param variables: a dictionary where keys are placeholder names and values are the actual values
     """
     print('[+] Writing file: '+output_file)
@@ -300,10 +300,13 @@ if __name__ == "__main__":
                             criteria += '- '+critvalue+'\n'
                 # Now get answer set
                 answer_set_markdown = ''
-                for asetkey,asetvalue in nested_dict['answer_sets'].items():
-                    if asetvalue['id'] == answer_set_id:
-                        for ansvalue in asetvalue['values']:
-                            answer_set_markdown += '- '+fix_bool(ansvalue['text'])+'\n'
+                try:
+                    for asetkey,asetvalue in nested_dict['answer_sets'].items():
+                        if asetvalue['id'] == answer_set_id:
+                            for ansvalue in asetvalue['values']:
+                                answer_set_markdown += '- '+fix_bool(ansvalue['text'])+'\n'
+                except Exception as err:
+                    print("Error handling answer sets: ", err)
 
                 # Set variables for the stream level template
                 variables = {

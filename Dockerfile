@@ -2,16 +2,19 @@
 FROM python:3.8-slim
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /github/workspace
 
 # Copy the script and the templates directory into the container
-COPY markmysamm.py ./
-COPY templates/ ./templates/
+COPY requirements.txt /requirements.txt
+COPY markmysamm.py /markmysamm.py
+COPY templates/ /templates/
+RUN ls -la
 
 # Install any needed packages specified in requirements.txt
 # You should create a requirements.txt file if you have external dependencies
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
 
 # Run markmysamm.py when the container launches
-ENTRYPOINT ["python3", "markmysamm.py"]
+#ENTRYPOINT ["python3", "/markmysamm.py"]
+# Temporarily replace the entrypoint for debugging
+ENTRYPOINT ["sh", "-c", "echo Current directory: $(pwd) && echo Directory contents: $(ls -la) && echo fr contents: $(ls -la fr) && python3 /markmysamm.py $0 $@"]

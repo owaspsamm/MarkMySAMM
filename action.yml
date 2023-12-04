@@ -11,7 +11,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - '-i'
-    - ${{ inputs.input_directory }}
-    - '-o'
-    - ${{ inputs.output_directory }}
+    - '-i ${{ inputs.input_directory }}'
+    - '-o ${{ inputs.output_directory }}'
